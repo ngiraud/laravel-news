@@ -17,6 +17,10 @@ Ce package a été conçu pour être utilisé avec l'interface d'administration.
   "url": "https://github.com/ngiraud/laravel-news"
 }],
 ```
+et faire la commande :
+```shell
+composer update
+```
 
 * Ajouter le ServiceProvider dans app.php
 
@@ -45,4 +49,9 @@ php artisan migrate
 * Le menu pour les news peut être ajouté grâce à l'inclusion suivante
 ```php
 @include('news::admin.news.menu')
+```
+
+* Le style peut être ajouté dans admin.scss avec la ligne suivante (lancer gulp pour ajouter le css)
+```scss
+@import "../../vendor/news/sass/admin/comment";
 ```

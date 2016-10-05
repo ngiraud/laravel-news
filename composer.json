@@ -11,7 +11,8 @@
     "minimum-stability": "dev",
     "require": {
         "laravel/framework": "5.3.*",
-        "spatie/laravel-medialibrary": "^4.9"
+        "spatie/laravel-medialibrary": "^4.9",
+        "laravelcollective/html": "5.3.*"
     },
     "classmap": [
         "src/Controllers"
