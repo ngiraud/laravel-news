@@ -1,0 +1,24 @@
+{
+    "name": "ngiraud1/news",
+    "description": "Package to implements the news and comments functionality",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Nicolas Giraud",
+            "email": "contact@ngiraud.me"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "laravel/framework": "5.3.*",
+        "spatie/laravel-medialibrary": "^4.9"
+    },
+    "classmap": [
+        "src/Controllers"
+    ],
+    "autoload": {
+        "psr-4": {
+            "NGiraud\\News\\": "src/"
+        }
+    }
+}
