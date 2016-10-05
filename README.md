@@ -6,9 +6,7 @@ Ce package a été conçu pour être utilisé avec l'interface d'administration.
 
 * Ajouter les lignes dans le composer.json
 
-```
-#!shell
-
+```shell
 "require": {
   ...
   "ngiraud1/news": "dev-master",
@@ -22,39 +20,29 @@ Ce package a été conçu pour être utilisé avec l'interface d'administration.
 
 * Ajouter le ServiceProvider dans app.php
 
-```
-#!php
-
+```php
 NGiraud\News\NewsServiceProvider::class,
 ```
 
 * Publier les vues, traductions et assets
 
-```
-#!shell
-
+```shell
 php artisan vendor:publish --provider="NGiraud\News\NewsServiceProvider" --tag=news
 ```
 
 * Publier les plugins (Pickadate) si besoin
 
-```
-#!shell
-
+```shell
 php artisan vendor:publish --provider="NGiraud\News\NewsServiceProvider" --tag=news_plugins
 ```
 
 * Migrer les tables de news
 
-```
-#!shell
-
+```shell
 php artisan migrate
 ```
 
 * Le menu pour les news peut être ajouté grâce à l'inclusion suivante
-```
-#!php
-
+```php
 @include('news::admin.news.menu')
 ```
