@@ -3,6 +3,7 @@
 namespace NGiraud\News\Notifications;
 
 use Illuminate\Bus\Queueable;
+use Illuminate\Notifications\Messages\SlackMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -69,6 +70,9 @@ class NewCommentAdmin extends Notification implements ShouldQueue {
 	 * @return array
 	 */
 	public function toArray($notifiable) {
-		return $this->comment->toArray();
+		return [
+			'comment' => $this->comment->toArray(),
+			'trad'	=> 'news::comments.notifications.bko.title',
+		];
 	}
 }

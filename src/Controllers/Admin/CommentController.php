@@ -25,64 +25,65 @@ class CommentController extends Controller {
 			exit;
 		}
 		$comment = Comment::create($request->all());
-		
+
 		if($parent_id == 0) {
 			$view = view('news::admin.comments.unique', [
 				'comment' => $comment,
-				'news'  => $comment->news
-			])->render();
-		} else {
-			$news           = News::withCount('allComments')->with('allComments')->find($news_id);
-			$comments = $news->allComments->sortByDesc('updated_at')->groupBy('parent_id');
-			
-			$view = view('news::admin.comments.list', [
-				'comments' => $comments,
-				'parent' => $parent_id,
-				'news'  => $news
+				'news'    => $comment->news,
 			])->render();
 		}
-		
+		else {
+			$news = News::withCount('allComments')->with('allComments')->find($news_id);
+			$comments = $news->allComments->sortByDesc('updated_at')->groupBy('parent_id');
+
+			$view = view('news::admin.comments.list', [
+				'comments' => $comments,
+				'parent'   => $parent_id,
+				'news'     => $news,
+			])->render();
+		}
+
 		return response()->json([
-			'msg' => trans("news::comments.flash.created.ok"),
-			'view'  => $view
+			'msg'  => trans("news::comments.flash.created.ok"),
+			'view' => $view,
 		]);
 	}
-	
+
 	public function approve(Request $request, $news_id, $comment_id) {
 		if(!$request->ajax()) {
 			exit;
 		}
-		
+
 		$comment = Comment::where([ 'id' => $comment_id, 'news_id' => $news_id ])->first();
-		
+
 		if(!is_null($comment)) {
 			$comment->update([ 'approved_status' => 1 ]);
-			
+
 			return response()->json(trans("news::comments.flash.approve.ok"));
 		}
-		
+
 		return response()->json(trans("news::comments.flash.approve.error"), 422);
 	}
-	
+
 	public function disapprove(Request $request, $news_id, $comment_id) {
 		if(!$request->ajax()) {
 			exit;
 		}
-		
+
 		$comment = Comment::where([ 'id' => $comment_id, 'news_id' => $news_id ])->first();
-		
+
 		if(!is_null($comment)) {
 			$comment->update([ 'approved_status' => 0 ]);
-			
+
 			return response()->json(trans("news::comments.flash.disapprove.ok"));
 		}
-		
+
 		return response()->json(trans("news::comments.flash.disapprove.error"), 422);
 	}
-	
-//	public function get($news_id) {
-//		$news = News::find($news_id);
-//
-//		return response()->json($news->comments);
-//	}
+
+	//	public function get($news_id) {
+	//		$news = News::find($news_id);
+	//
+	//		return response()->json($news->comments);
+	//	}
 }

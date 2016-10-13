@@ -39,4 +39,8 @@ class Comment extends Model {
 	public function news() {
 		return $this->belongsTo('NGiraud\News\Models\News');
 	}
+
+	public function user() {
+		return $this->belongsTo('App\User');
+	}
 }

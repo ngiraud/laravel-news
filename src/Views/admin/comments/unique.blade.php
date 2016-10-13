@@ -1,6 +1,6 @@
 <li class="one-comment-object" id="comment-{{ $comment->id }}">
 	<div class="one-comment {{ !empty($comments[$comment->id]) && !$comments[$comment->id]->isEmpty() ? 'has-children' : '' }}">
-		<img class="comment-avatar" src="{{ asset('img/avatar.png') }}" />
+		<img class="comment-avatar" src="{{ $comment->user_id == 0 ? asset('img/avatar.png') : $comment->user->getAvatar() }}" />
 		<div class="comment-body">
 			<div class="comment-author-name">{{ $comment->author_name }}</div>
 			<div class="comment-meta">{{ $comment->updated_at->diffForHumans() }}</div>

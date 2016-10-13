@@ -90,7 +90,7 @@ class News extends Model implements HasMediaConversions {
 	public function getUrlImage($type = false) {
 		$mediaItems = $this->getMedia();
 		if(!$mediaItems->isEmpty()) {
-			if($type !== false && file_exists($mediaItems[0]->getUrl($type))) {
+			if($type !== false && file_exists($mediaItems[0]->getPath($type))) {
 				return $mediaItems[0]->getUrl($type);
 			}
 			return $mediaItems[0]->getUrl();
